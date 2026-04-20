@@ -1,0 +1,619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Nuvex - Intelligent Software Solutions</title>
+<style>
+
+* { margin: 0; padding: 0; }
+body { font-family: Georgia, "Times New Roman", serif; background-color: #fff; color: #222; }
+a { text-decoration: none; color: inherit; }
+
+/* ════ NAVBAR ════ */
+.navbar { background-color: #6c63ff; width: 100%; position: fixed; top: 0; left: 0; z-index: 9999; }
+.navbar table { width: 100%; border-collapse: collapse; }
+.navbar td { padding: 14px 22px; vertical-align: middle; }
+
+/* LOGO */
+.nav-logo {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 3px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+.nav-logo span { color: #c8c4ff; }
+
+/* ROUNDED SEARCH */
+.nav-search {
+  background-color: #fff;
+  border: none;
+  padding: 7px 16px;
+  font-size: 13px;
+  color: #999;
+  width: 185px;
+  font-family: Georgia, serif;
+  border-radius: 20px;
+}
+
+.nav-links-td { text-align: right; }
+
+/* nav underline sliding via ::after */
+.nav-links-td a {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  font-size: 13px;
+  color: #fff;
+  padding-bottom: 4px;
+  font-family: Georgia, serif;
+}
+.nav-links-td a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background-color: #fff;
+}
+.nav-links-td a:hover { color: #ddd9ff; }
+.nav-links-td a:hover::after { width: 100%; left: 0; transition: width 0.3s ease, left 0.3s ease; }
+
+/* dropdown toggle */
+.drop { position: relative; display: inline; }
+.drop-toggle {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  font-size: 13px;
+  color: #fff;
+  padding-bottom: 4px;
+  cursor: pointer;
+  font-family: Georgia, serif;
+}
+.drop-toggle::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background-color: #fff;
+}
+.drop:hover .drop-toggle { color: #ddd9ff; }
+.drop:hover .drop-toggle::after { width: 100%; left: 0; transition: width 0.3s ease, left 0.3s ease; }
+
+.drop-menu {
+  display: none;
+  position: absolute;
+  top: 30px; right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 3px solid #6c63ff;
+  min-width: 175px;
+  z-index: 99999;
+  border-radius: 0 0 8px 8px;
+}
+.drop:hover .drop-menu { display: block; }
+
+/* dropdown items with sliding underline from center */
+.drop-menu a {
+  display: block;
+  position: relative;
+  padding: 12px 18px;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  margin-left: 0;
+}
+.drop-menu a:last-child { border-bottom: none; }
+.drop-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background-color: #6c63ff;
+}
+.drop-menu a:hover { color: #6c63ff; background-color: #f0eeff; }
+.drop-menu a:hover::after { width: 80%; left: 10%; transition: width 0.3s ease, left 0.3s ease; }
+
+/* ════ SECTIONS ════ */
+.section-full { width: 100%; display: table; }
+.section-inner { display: table-cell; vertical-align: middle; padding: 100px 60px 60px 60px; }
+.section-center { display: table-cell; vertical-align: middle; text-align: center; padding: 100px 60px 60px 60px; }
+.sec-wrap { text-align: center; margin-bottom: 50px; }
+.sec-wrap h2 { font-size: 34px; font-weight: bold; color: #222; margin-bottom: 10px; }
+.sec-line { display: block; width: 60px; height: 3px; background-color: #6c63ff; margin: 0 auto; }
+
+/* ════ HERO ════ */
+.hero { position: relative; width: 100%; display: table; height: 100vh; min-height: 100vh; }
+.hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80'); background-size: cover; background-position: center; }
+.hero-dim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #060e24; opacity: 0; filter: alpha(opacity=88); }
+/* overlay trick for older browsers — use a second approach */
+.hero-dim { background-color: rgba(6,14,36,0.88); opacity: 1; }
+.hero-d1 { position: absolute; top: 60px; left: 60px; width: 120px; height: 120px; border: 1px solid rgba(108,99,255,0.3); border-radius: 50%; }
+.hero-d2 { position: absolute; bottom: 80px; right: 80px; width: 70px; height: 70px; border: 1px solid rgba(108,99,255,0.2); border-radius: 50%; }
+.hero-inner { position: relative; z-index: 2; display: table; width: 100%; height: 100vh; }
+.hero-cell { display: table-cell; vertical-align: middle; text-align: center; padding: 160px 60px 80px 60px; }
+.hero-badge { display: inline-block; background-color: rgba(108,99,255,0.18); border: 1px solid rgba(108,99,255,0.5); color: #a89fff; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; padding: 6px 20px; margin-bottom: 22px; font-family: "Courier New", monospace; border-radius: 20px; }
+.hero-icons { margin-bottom: 22px; }
+.hero-icons span { display: inline-block; margin: 0 10px; font-size: 22px; color: #8c84ff; width: 50px; height: 50px; line-height: 50px; text-align: center; background-color: rgba(108,99,255,0.15); border-radius: 50%; border: 1px solid rgba(108,99,255,0.3); }
+.hero h1 { font-size: 72px; font-weight: bold; color: #fff; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; line-height: 1.06; }
+.hero h1 span { color: #6c63ff; }
+.hero-desc { font-size: 16px; color: rgba(255,255,255,0.5); max-width: 580px; margin: 0 auto 38px auto; line-height: 1.85; font-style: italic; }
+
+/* hero buttons — ::before left to right */
+.btn-white { display: inline-block; position: relative; overflow: hidden; background-color: #fff; color: #1a1438; padding: 13px 32px; font-size: 14px; font-family: Georgia, serif; border: 2px solid #fff; cursor: pointer; }
+.btn-white::before { content: ""; position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #d8d4ff; opacity: 0.85; z-index: 0; }
+.btn-white:hover::before { width: 100%; transition: width 0.5s ease; }
+.btn-white span { position: relative; z-index: 1; }
+.btn-white:hover span { color: #6c63ff; }
+
+.btn-purple { display: inline-block; position: relative; overflow: hidden; background-color: #6c63ff; color: #fff; padding: 13px 32px; font-size: 14px; font-family: Georgia, serif; border: 2px solid #6c63ff; cursor: pointer; margin-left: 14px; }
+.btn-purple::before { content: ""; position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #5549d4; opacity: 0.85; z-index: 0; }
+.btn-purple:hover::before { width: 100%; transition: width 0.5s ease; }
+.btn-purple span { position: relative; z-index: 1; }
+
+/* ════ FEATURES
+   ::before diagonal top-left to bottom-right
+════ */
+.features-bg { background-color: #fff; }
+.feat-grid-row { display: table; width: 100%; border-collapse: separate; }
+.feat-grid-col { display: table-cell; width: 33.33%; padding: 10px; vertical-align: top; }
+
+.feat-card { border: 1px solid #d8d5ff; text-align: center; padding: 36px 24px; background-color: #fff; cursor: pointer; position: relative; overflow: hidden; display: block; }
+.feat-card::before { content: ""; position: absolute; top: -100%; left: -100%; width: 100%; height: 100%; background-color: #6c63ff; opacity: 0.85; z-index: 0; }
+.feat-card:hover::before { top: 0; left: 0; transition: top 0.5s ease, left 0.5s ease; }
+.feat-card:hover { border-color: #5549d4; }
+.feat-icon { font-size: 24px; color: #6c63ff; margin-bottom: 14px; display: inline-block; position: relative; z-index: 1; width: 56px; height: 56px; line-height: 56px; text-align: center; background-color: #eeeaff; border-radius: 50%; }
+.feat-h3 { font-size: 17px; color: #222; margin-bottom: 10px; font-weight: bold; position: relative; z-index: 1; }
+.feat-p { font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 16px; position: relative; z-index: 1; }
+.feat-link { font-size: 13px; color: #6c63ff; font-weight: bold; display: block; position: relative; z-index: 1; }
+.feat-card:hover .feat-icon { color: #fff; }
+.feat-card:hover .feat-h3 { color: #fff; }
+.feat-card:hover .feat-p { color: #d0ccff; }
+.feat-card:hover .feat-link { color: #fff; }
+
+/* ════ PORTFOLIO
+   overlay div top to bottom
+════ */
+.portfolio-bg { background-color: #eeeaff; }
+.port-grid-row { display: table; width: 100%; border-collapse: separate; margin-bottom: 14px; }
+.port-grid-col { display: table-cell; width: 33.33%; padding: 0 7px; vertical-align: top; }
+.port-item { position: relative; overflow: hidden; height: 200px; cursor: pointer; display: block; }
+.port-item img { width: 100%; height: 200px; display: block; }
+.port-over { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #5549d4; z-index: 2; display: none; }
+.port-item:hover .port-over { display: table; }
+.port-over-td { display: table-cell; vertical-align: middle; text-align: center; }
+.port-cat { font-size: 15px; color: #fff; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.port-sub { font-size: 12px; color: #c8c4ff; font-style: italic; margin-bottom: 16px; }
+.port-btn { display: inline-block; width: 36px; height: 36px; background-color: #fff; text-align: center; line-height: 36px; font-size: 16px; margin: 0 4px; color: #6c63ff; cursor: pointer; }
+.port-btn:hover { background-color: #6c63ff; color: #fff; }
+
+/* ════ WHAT WE OFFER
+   ::before left to right
+════ */
+.offer-bg { background-color: #fff; }
+.offer-grid-row { display: table; width: 100%; border-collapse: separate; margin-bottom: 14px; }
+.offer-grid-col { display: table-cell; width: 33.33%; padding: 0 7px; vertical-align: top; }
+.offer-card { border: 1px solid #d8d5ff; padding: 24px 20px; background-color: #fff; cursor: pointer; position: relative; overflow: hidden; display: block; }
+.offer-card::before { content: ""; position: absolute; top: -100%; left: -100%; width: 100%; height: 100%; background-color: #6c63ff; opacity: 0.4; z-index: 0; }
+.offer-card:hover::before { top: 0; left: 0; transition: top 0.5s ease, left 0.5s ease; }
+.offer-card:hover { border-color: #5549d4; }
+.offer-icon { font-size: 20px; color: #6c63ff; margin-bottom: 12px; display: inline-block; position: relative; z-index: 1; width: 48px; height: 48px; line-height: 48px; text-align: center; background-color: #eeeaff; border-radius: 50%; }
+.offer-h3 { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 8px; line-height: 1.4; position: relative; z-index: 1; }
+.offer-p { font-size: 13px; color: #888; line-height: 1.7; position: relative; z-index: 1; }
+.offer-card:hover .offer-icon { color: #6c63ff; }
+.offer-card:hover .offer-h3 { color: #5549d4; }
+.offer-card:hover .offer-p { color: #6c63ff; }
+
+/* ════ WHY CHOOSE US ════ */
+.why-bg { background-color: #fff; border-top: 1px solid #f0f0f0; }
+.why-table { width: 100%; border-collapse: collapse; }
+.why-left { width: 50%; vertical-align: middle; padding-right: 60px; border-right: 1px solid #f0f0f0; }
+.why-right { width: 50%; vertical-align: middle; text-align: center; padding-left: 60px; }
+.why-left h2 { font-size: 32px; font-weight: bold; color: #222; margin-bottom: 12px; }
+.why-bar { width: 60px; height: 3px; background-color: #6c63ff; margin-bottom: 18px; }
+.why-intro { font-size: 13px; color: #aaa; line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+.why-chk { font-size: 14px; color: #333; margin-bottom: 14px; }
+.why-chk span { color: #6c63ff; margin-right: 8px; font-weight: bold; }
+.why-img { width: 300px; height: 420px; display: block; margin: 0 auto 18px auto; object-fit: cover; }
+.dot-wrap { text-align: center; }
+.dot { display: inline-block; width: 12px; height: 12px; background-color: #ccc; margin: 0 4px; cursor: pointer; border-radius: 50%; }
+.dot.on { background-color: #6c63ff; }
+.dot:hover { background-color: #6c63ff; }
+
+/* ════ STATS ════ */
+.stats-wrap {
+  position: relative;
+  width: 100%;
+  display: table;
+  background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.stats-dim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10,8,46,0.82); }
+.stats-inner { position: relative; z-index: 2; display: table; width: 100%; }
+.stats-cell { display: table-cell; vertical-align: middle; text-align: center; padding: 100px 60px; }
+.stats-table { width: 100%; border-collapse: collapse; }
+.stats-td { width: 25%; text-align: center; vertical-align: middle; padding: 30px; }
+.stat-ico { font-size: 38px; color: #8c84ff; margin-bottom: 12px; display: block; }
+.stat-num { font-size: 40px; font-weight: bold; color: #fff; margin-bottom: 6px; display: block; }
+.stat-lbl { font-size: 12px; color: #6660aa; letter-spacing: 3px; text-transform: uppercase; font-family: "Courier New", monospace; display: block; }
+
+/* ════ PRICING
+   ::before top to bottom
+════ */
+.pricing-bg { background-color: #fff; }
+.price-grid-row { display: table; width: 100%; border-collapse: separate; table-layout: fixed; }
+.price-grid-col { display: table-cell; width: 33.33%; padding: 10px; vertical-align: stretch; }
+.price-card { border: 1px solid #d8d5ff; text-align: center; background-color: #fff; cursor: pointer; position: relative; overflow: hidden; display: block; height: 100%; box-sizing: border-box; }
+.price-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 0; background-color: #6c63ff; opacity: 0.85; z-index: 0; }
+.price-card:hover::before { height: 100%; transition: height 0.5s ease; }
+.price-card.featured { background-color: #fff; border-color: #d8d5ff; }
+.price-body { padding: 52px 28px; position: relative; z-index: 1; }
+.price-name { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-bottom: 22px; font-family: "Courier New", monospace; display: block; }
+.price-card:hover .price-name { color: #c8c4ff; }
+.price-circle { width: 106px; height: 106px; border: 2px solid #d8d5ff; margin: 0 auto 22px auto; display: table; }
+.price-card:hover .price-circle { border-color: #9990ff; }
+.price-c-inner { display: table-cell; vertical-align: middle; text-align: center; }
+.price-amt { font-size: 30px; font-weight: bold; color: #222; display: block; }
+.price-card:hover .price-amt { color: #fff; }
+.price-per { font-size: 11px; color: #aaa; display: block; }
+.price-card:hover .price-per { color: #c8c4ff; }
+.price-ft { font-size: 13px; color: #444; margin-bottom: 10px; font-weight: bold; display: block; }
+.price-card:hover .price-ft { color: #e0ddff; }
+.price-cta { display: inline-block; padding: 10px 28px; border: 1px solid #d8d5ff; font-size: 13px; color: #333; margin-top: 18px; cursor: pointer; background-color: #fff; position: relative; z-index: 2; }
+.price-cta:hover { background-color: #6c63ff; color: #fff; border-color: #6c63ff; }
+.price-card:hover .price-cta { background-color: #fff; color: #6c63ff; border-color: #fff; }
+
+/* ════ TESTIMONIALS ════ */
+.test-wrap {
+  position: relative;
+  width: 100%;
+  display: table;
+  background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.test-dim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(14,20,50,0.82); }
+.test-dim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #0e1432; }
+.test-inner { position: relative; z-index: 2; display: table; width: 100%; }
+.test-cell { display: table-cell; vertical-align: middle; padding: 100px 60px; }
+.test-cols { display: table; width: 100%; border-collapse: collapse; }
+.test-col { display: table-cell; width: 50%; vertical-align: top; padding: 20px; }
+.test-person { display: table; margin-bottom: 18px; }
+.test-av { display: table-cell; width: 64px; vertical-align: middle; }
+.test-av img { width: 64px; height: 64px; display: block; }
+.test-info { display: table-cell; vertical-align: middle; padding-left: 16px; }
+.test-name { font-size: 18px; font-weight: bold; color: #fff; }
+.test-role { font-size: 13px; color: #8c84ff; }
+.test-quote { font-size: 13px; color: #6660aa; line-height: 1.85; font-style: italic; }
+
+/* ════ TEAM
+   ::before top to bottom, social buttons appear
+════ */
+.team-bg { background-color: #fff; }
+.team-grid-row { display: table; width: 100%; border-collapse: separate; }
+.team-grid-col { display: table-cell; width: 33.33%; padding: 10px; vertical-align: top; }
+.team-card { border: 1px solid #e8e8e8; background-color: #fff; cursor: pointer; display: block; }
+.team-pic-wrap { position: relative; height: 250px; overflow: hidden; display: block; }
+.team-pic-wrap img { width: 100%; height: 250px; display: block; }
+.team-over { position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background-color: #5549d4; z-index: 1; opacity: 0.5; }
+.team-card:hover .team-over { top: 0; transition: top 0.5s ease; }
+.team-soc-wrap { position: absolute; top: 50%; right: 0; margin-top: -52px; padding: 6px; z-index: 2; display: none; }
+.team-card:hover .team-soc-wrap { display: block; }
+.team-soc { display: block; width: 32px; height: 32px; background-color: #fff; text-align: center; line-height: 32px; font-size: 13px; color: #6c63ff; margin-bottom: 5px; cursor: pointer; font-weight: bold; }
+.team-soc:hover { background-color: #6c63ff; color: #fff; }
+.team-info { padding: 18px 16px; background-color: #f8f7ff; text-align: center; }
+.team-name { font-size: 17px; font-weight: bold; color: #222; margin-bottom: 4px; }
+.team-card:hover .team-name { color: #6c63ff; }
+.team-role { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; font-family: "Courier New", monospace; }
+
+/* ════ NEWS
+   ::after bottom line grows left to right
+════ */
+.news-bg { background-color: #fff; border-top: 1px solid #f0f0f0; }
+.news-grid-row { display: table; width: 100%; border-collapse: separate; table-layout: fixed; }
+.news-grid-col { display: table-cell; width: 33.33%; padding: 10px; vertical-align: stretch; }
+.news-card { border: 1px solid #e0e0e0; background-color: #fff; cursor: pointer; position: relative; overflow: hidden; display: block; height: 100%; box-sizing: border-box; }
+.news-card::after { content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background-color: #6c63ff; }
+.news-card:hover::after { width: 100%; transition: width 0.5s ease; }
+.news-card:hover { border-color: #6c63ff; }
+.news-card img { width: 100%; height: 190px; display: block; }
+.news-meta { padding: 14px 18px 0 18px; font-size: 12px; color: #aaa; }
+.news-meta span { color: #6c63ff; margin-right: 8px; }
+.news-h { padding: 8px 18px 0 18px; font-size: 17px; font-weight: bold; color: #222; }
+.news-card:hover .news-h { color: #6c63ff; }
+.news-body { padding: 10px 18px 14px 18px; font-size: 13px; color: #666; line-height: 1.7; }
+.news-read { display: block; padding: 0 18px 18px 18px; font-size: 13px; color: #6c63ff; font-weight: bold; }
+.news-read:hover { color: #5549d4; }
+
+/* ════ FOOTER ════ */
+.footer-bg { background-color: #eeeaff; border-top: 1px solid #d8d5ff; }
+.soc-row { margin-bottom: 22px; }
+.soc-btn { display: inline-block; position: relative; overflow: hidden; width: 44px; height: 44px; background-color: #6c63ff; color: #fff; text-align: center; line-height: 44px; font-size: 15px; margin: 0 4px; cursor: pointer; font-weight: bold; border-radius: 50%; border: 2px solid #6c63ff; }
+.soc-btn:hover { background-color: #fff; color: #6c63ff; }
+.copy { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; font-family: "Courier New", monospace; }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <table><tr>
+    <td style="width:100px"><div class="nav-logo">Nu<span>v</span>ex</div></td>
+    <td style="width:220px"><input class="nav-search" type="text" value="&#128269; Search..."></td>
+    <td class="nav-links-td">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#prices">Prices</a>
+      <a href="#team">Team</a>
+      <span class="drop">
+        <span class="drop-toggle">Blog &#9662;</span>
+        <div class="drop-menu">
+          <a href="#">Tech Insights</a>
+          <a href="#">Company News</a>
+        </div>
+      </span>
+      <a href="#contact">Contact Us</a>
+    </td>
+  </tr></table>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dim"></div>
+  <div class="hero-d1"></div>
+  <div class="hero-d2"></div>
+  <div class="hero-inner">
+    <div class="hero-cell">
+      <h1>We Build <span>Intelligent</span><br>Software</h1>
+      <p class="hero-desc">From startups to enterprises — we design, engineer, and ship digital products that scale. Clean code. Honest timelines. Real results.</p>
+      <a href="#about" class="btn-white"><span>Explore Our Work</span></a>
+      <a href="#contact" class="btn-purple"><span>Start a Project</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section-full features-bg" id="about">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>Welcome To Nuvex</h2><span class="sec-line"></span></div>
+    <div class="feat-grid-row">
+      <div class="feat-grid-col">
+        <div class="feat-card">
+          <span class="feat-icon">&#9881;&#65039;</span>
+          <div class="feat-h3">Fully Customizable</div>
+          <p class="feat-p">Tailor every aspect of your software. From UI to backend logic, we build exactly what your business needs.</p>
+          <a href="#" class="feat-link">Read More</a>
+        </div>
+      </div>
+      <div class="feat-grid-col">
+        <div class="feat-card">
+          <span class="feat-icon">&#10024;</span>
+          <div class="feat-h3">AI-Powered Solutions</div>
+          <p class="feat-p">We integrate cutting-edge machine learning and LLM tools directly into your product stack.</p>
+          <a href="#" class="feat-link">Read More</a>
+        </div>
+      </div>
+      <div class="feat-grid-col">
+        <div class="feat-card">
+          <span class="feat-icon">&#128241;</span>
+          <div class="feat-h3">Mobile-First Design</div>
+          <p class="feat-p">Every product we ship is built responsive from day one. Flawless on any screen, any device.</p>
+          <a href="#" class="feat-link">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="section-full portfolio-bg" id="portfolio">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>Featured Works</h2><span class="sec-line"></span></div>
+    <div class="port-grid-row">
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="Cloud"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">cloud infrastructure</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&q=80" alt="AI"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">ai analytics</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Code"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">saas platform</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+    </div>
+    <div class="port-grid-row" style="margin-top:14px">
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80" alt="Mobile"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">mobile development</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="Web"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">web development</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+      <div class="port-grid-col"><div class="port-item"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Data"><div class="port-over"><div class="port-over-td"><div class="port-cat">Category</div><div class="port-sub">data engineering</div><span class="port-btn">&#9825;</span><span class="port-btn">&#128065;</span></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE OFFER -->
+<div class="section-full offer-bg" id="services">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>What We Offer</h2><span class="sec-line"></span></div>
+    <div class="offer-grid-row">
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#128081;</div><div class="offer-h3">Enterprise Software Development</div><p class="offer-p">Scalable, secure, and maintainable software built to grow with your organization from day one.</p></div></div>
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#10024;</div><div class="offer-h3">AI &amp; Machine Learning Integration</div><p class="offer-p">We embed smart automation and predictive intelligence directly into your existing workflows.</p></div></div>
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#128722;</div><div class="offer-h3">Seamless DevOps &amp; Cloud Delivery</div><p class="offer-p">Zero-downtime deploys, automated pipelines, rock-solid infrastructure on any cloud provider.</p></div></div>
+    </div>
+    <div class="offer-grid-row" style="margin-top:14px">
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#128204;</div><div class="offer-h3">24/7 Technical Support</div><p class="offer-p">Around-the-clock monitoring and expert support so your systems stay healthy at all times.</p></div></div>
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#128666;</div><div class="offer-h3">Agile Project Delivery</div><p class="offer-p">Two-week sprints, transparent reporting, delivery that matches the timeline we promised.</p></div></div>
+      <div class="offer-grid-col"><div class="offer-card"><div class="offer-icon">&#127873;</div><div class="offer-h3">Full IP Ownership on Delivery</div><p class="offer-p">Every line of code and every asset is yours the moment the project ships. No lock-in. Ever.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<div class="section-full why-bg">
+  <div class="section-inner">
+    <table class="why-table"><tr>
+      <td class="why-left">
+        <h2>Why Choose Us</h2>
+        <div class="why-bar"></div>
+        <p class="why-intro">We have been building software for ambitious teams since 2015. What sets us apart is not just the code — it is how we think about your problem before we write any of it.</p>
+        <div class="why-chk"><span>&#10003;</span>Unique, scalable solutions for every business size.</div>
+        <div class="why-chk"><span>&#10003;</span>Expertly crafted with battle-tested technologies.</div>
+        <div class="why-chk"><span>&#10003;</span>Exceptional quality with transparent, honest pricing.</div>
+        <div class="why-chk"><span>&#10003;</span>Dedicated to outstanding client satisfaction, always.</div>
+      </td>
+      <td class="why-right">
+        <img class="why-img" src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=700&q=80" alt="Why Choose Us">
+        <div class="dot-wrap"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+      </td>
+    </tr></table>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats-dim"></div>
+  <div class="stats-inner">
+    <div class="stats-cell">
+      <table class="stats-table"><tr>
+        <td class="stats-td"><span class="stat-ico">&#128101;</span><span class="stat-num">451k</span><span class="stat-lbl">Happy Clients</span></td>
+        <td class="stats-td"><span class="stat-ico">&#127942;</span><span class="stat-num">38</span><span class="stat-lbl">Awards Won</span></td>
+        <td class="stats-td"><span class="stat-ico">&#9749;</span><span class="stat-num">154k</span><span class="stat-lbl">Cups of Coffee</span></td>
+        <td class="stats-td"><span class="stat-ico">&#128196;</span><span class="stat-num">120</span><span class="stat-lbl">Projects Completed</span></td>
+      </tr></table>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section-full pricing-bg" id="prices">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>Pricing Table</h2><span class="sec-line"></span></div>
+    <div class="price-grid-row">
+      <div class="price-grid-col">
+        <div class="price-card">
+          <div class="price-body">
+            <span class="price-name">Starter Plan</span>
+            <div class="price-circle"><div class="price-c-inner"><span class="price-amt">$499</span><span class="price-per">/ month</span></div></div>
+            <span class="price-ft">Up to 3 Projects</span>
+            <span class="price-ft">Cloud Hosting Included</span>
+            <span class="price-ft">Email Support</span>
+            <a href="#" class="price-cta">Purchase Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="price-grid-col">
+        <div class="price-card featured">
+          <div class="price-body">
+            <span class="price-name">Professional Plan</span>
+            <div class="price-circle"><div class="price-c-inner"><span class="price-amt">$999</span><span class="price-per">/ month</span></div></div>
+            <span class="price-ft">Up to 10 Projects</span>
+            <span class="price-ft">20% Off + Priority Queue</span>
+            <span class="price-ft">Dedicated Manager</span>
+            <a href="#" class="price-cta">Purchase Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="price-grid-col">
+        <div class="price-card">
+          <div class="price-body">
+            <span class="price-name">Enterprise Plan</span>
+            <div class="price-circle"><div class="price-c-inner"><span class="price-amt">$2499</span><span class="price-per">/ month</span></div></div>
+            <span class="price-ft">Unlimited Projects</span>
+            <span class="price-ft">Full SLA &amp; 99.9% Uptime</span>
+            <span class="price-ft">24/7 Phone Support</span>
+            <a href="#" class="price-cta">Purchase Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="test-wrap" id="contact">
+  <div class="test-dim"></div>
+  <div class="test-inner">
+    <div class="test-cell">
+      <div class="sec-wrap" style="margin-bottom:40px"><h2 style="color:#fff">What Clients Say</h2><span class="sec-line"></span></div>
+      <table class="test-cols"><tr>
+        <td class="test-col">
+          <div class="test-person"><div class="test-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80" alt="Noura"></div><div class="test-info"><div class="test-name">Noura Elsayed</div><div class="test-role">CTO, Apex Corp</div></div></div>
+          <p class="test-quote">"Nuvex transformed our entire data infrastructure in under three months. Sharp team, honest timelines, exactly what they promised."</p>
+        </td>
+        <td class="test-col">
+          <div class="test-person"><div class="test-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80" alt="Khalid"></div><div class="test-info"><div class="test-name">Khalid Ali</div><div class="test-role">Product Lead, Orion Labs</div></div></div>
+          <p class="test-quote">"From discovery to deployment, Nuvex made the whole process feel effortless. Our platform handles 10x the traffic now."</p>
+        </td>
+      </tr></table>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="section-full team-bg" id="team">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>Our Team</h2><span class="sec-line"></span></div>
+    <div class="team-grid-row">
+      <div class="team-grid-col">
+        <div class="team-card">
+          <div class="team-pic-wrap">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="Ahmed">
+            <div class="team-over"></div>
+            <div class="team-soc-wrap"><a class="team-soc" href="#">f</a><a class="team-soc" href="#">in</a><a class="team-soc" href="#">X</a></div>
+          </div>
+          <div class="team-info"><div class="team-name">Ahmed Karim</div><div class="team-role">Lead Architect</div></div>
+        </div>
+      </div>
+      <div class="team-grid-col">
+        <div class="team-card">
+          <div class="team-pic-wrap">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" alt="Omar">
+            <div class="team-over"></div>
+            <div class="team-soc-wrap"><a class="team-soc" href="#">f</a><a class="team-soc" href="#">in</a><a class="team-soc" href="#">X</a></div>
+          </div>
+          <div class="team-info"><div class="team-name">Omar Hassan</div><div class="team-role">Full Stack Development</div></div>
+        </div>
+      </div>
+      <div class="team-grid-col">
+        <div class="team-card">
+          <div class="team-pic-wrap">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80" alt="Sara">
+            <div class="team-over"></div>
+            <div class="team-soc-wrap"><a class="team-soc" href="#">f</a><a class="team-soc" href="#">in</a><a class="team-soc" href="#">X</a></div>
+          </div>
+          <div class="team-info"><div class="team-name">Sara Mahmoud</div><div class="team-role">AI &amp; Data Engineering</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div class="section-full news-bg">
+  <div class="section-inner">
+    <div class="sec-wrap"><h2>Recent News</h2><span class="sec-line"></span></div>
+    <div class="news-grid-row">
+      <div class="news-grid-col"><div class="news-card"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="News 1"><div class="news-meta"><span>f Ahmed</span><span>in 13 Dec</span><span>X 75</span></div><div class="news-h">Cloud Migration Manager</div><div class="news-body">Skilled in moving legacy systems to modern cloud infrastructure with zero downtime.</div><a href="#" class="news-read">read more</a></div></div>
+      <div class="news-grid-col"><div class="news-card"><img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="News 2"><div class="news-meta"><span>f Mariam</span><span>in 13 Dec</span><span>X 75</span></div><div class="news-h">AI Integration Specialist</div><div class="news-body">Passionate about embedding machine learning into business workflows with 5 years experience.</div><a href="#" class="news-read">read more</a></div></div>
+      <div class="news-grid-col"><div class="news-card"><img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&q=80" alt="News 3"><div class="news-meta"><span>f John Doe</span><span>in 13 Dec</span><span>X 75</span></div><div class="news-h">DevOps Consultant</div><div class="news-body">Experienced in CI/CD pipelines. Helps teams ship faster without breaking things.</div><a href="#" class="news-read">read more</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="section-full footer-bg">
+  <div class="section-center">
+    <img style="width:200px;height:130px;display:block;margin:0 auto 28px auto;object-fit:cover;" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Office">
+    <div class="soc-row">
+      <a class="soc-btn" href="#">f</a>
+      <a class="soc-btn" href="#">X</a>
+      <a class="soc-btn" href="#">&#9654;</a>
+      <a class="soc-btn" href="#">in</a>
+      <a class="soc-btn" href="#">&#128247;</a>
+      <a class="soc-btn" href="#">G+</a>
+    </div>
+    <div class="copy">&copy; 2024 &nbsp;&bull;&nbsp; All Rights Reserved By Nuvex</div>
+  </div>
+</div>
+
+</body>
+</html>
